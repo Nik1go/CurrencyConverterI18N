@@ -37,18 +37,18 @@ jobs:
         run: |
           echo "${{ env.GOOGLE_SERVICES_JSON_BASE64 }}" | base64 -d > app/google-services.json
 
-      - name: Build, Lint, Test & Assemble Release
+      - name: Build, Lint, Test & Assemble Debug
         run: |
           ./gradlew clean
           ./gradlew lint
           ./gradlew test
-          ./gradlew assembleRelease
+          ./gradlew assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
-          path: app/build/outputs/apk/release/app-release.apk
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
 
       - name: Install Firebase CLI
         if: ${{ env.FIREBASE_DISTRIBUTION_ENABLED == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -57,7 +57,7 @@ jobs:
       - name: Distribute to Firebase App Distribution
         if: ${{ env.FIREBASE_DISTRIBUTION_ENABLED == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         run: |
-          firebase appdistribution:distribute app/build/outputs/apk/release/app-release.apk \
+          firebase appdistribution:distribute app/build/outputs/apk/debug/app-debug.apk \
             --app ${{ env.FIREBASE_APP_ID_ANDROID }} \
             --groups "${{ env.FIREBASE_TESTERS }}" \
             --release-notes "${{ env.FIREBASE_RELEASE_NOTES }}" \
