@@ -31,7 +31,9 @@ class MainActivity : ComponentActivity() {
         "JPY" to CurrencyDisplay("JPY", "Yen japonais", "🇯🇵"),
         "AUD" to CurrencyDisplay("AUD", "Dollar australien", "🇦🇺"),
         "CNY" to  CurrencyDisplay("CNY", "Yuan chinois", "🇨🇳"),
-    )
+        "RUB" to CurrencyDisplay("RUB", "Ruble russe", "🇷🇺")
+
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
