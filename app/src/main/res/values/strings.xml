@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">deviseAPP V2</string>
+    <!-- default_web_client_id is generated via resValue in build.gradle.kts -->
 </resources>

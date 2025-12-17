@@ -16,6 +16,7 @@ jobs:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       FIREBASE_TESTERS: ${{ secrets.FIREBASE_TESTERS }}
       FIREBASE_RELEASE_NOTES: "CI build - automated"
+      GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
 
     steps:
       - name: Checkout
