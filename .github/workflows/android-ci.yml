@@ -17,6 +17,7 @@ jobs:
       FIREBASE_TESTERS: ${{ secrets.FIREBASE_TESTERS }}
       FIREBASE_RELEASE_NOTES: "CI build - automated"
       GOOGLE_WEB_CLIENT_ID: ${{ secrets.GOOGLE_WEB_CLIENT_ID }}
+      GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
 
     steps:
       - name: Checkout
@@ -37,6 +38,11 @@ jobs:
         if: ${{ env.GOOGLE_SERVICES_JSON_BASE64 != '' }}
         run: |
           echo "${{ env.GOOGLE_SERVICES_JSON_BASE64 }}" | base64 -d > app/google-services.json
+
+      # Créer local.properties avec la clé API Maps
+      - name: Create local.properties with Maps API Key
+        run: |
+          echo "MAPS_API_KEY=${{ env.GOOGLE_MAPS_API_KEY }}" > local.properties
 
       - name: Build, Lint, Test & Assemble Debug
         run: |
